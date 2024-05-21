@@ -1,55 +1,37 @@
 package com.example;
 
+import com.example.exceptions.BookNotFoundException;
+import com.example.exceptions.BookNotInInventoryException;
+import com.example.exceptions.BookUnavailableException;
+import com.example.models.Book;
+import com.example.service.BooksManager;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Library {
 
-    private List<Book> books;
+    private BooksManager booksManager;
 
-    public Library(){
-        books = new ArrayList<>();
-    }
-
-    public List<Book> getBooks() {
-        return books;
+    public Library(BooksManager booksManager){
+        this.booksManager = booksManager;
     }
 
     public void addBook(Book book){
-        books.add(book);
+        booksManager.addBook(book);
     }
 
-    public Book findBook(String name){
-
-        for(Book book : books){
-            if(book.getTitle().equals(name)){
-                return book;
-            }
-        }
-        return null;
+    public void findBook(String bookName){
+        booksManager.findBook(bookName);
     }
 
-
-    public void lendBook(String name){
-        Book book = findBook(name);
-        if(book.isAvailable()){
-            book.setAvailable(false);
-        }
-        else{
-            throw new RuntimeException("Book unavailable.");
-        }
+    public void lendBook(String bookName){
+        booksManager.lendBook(bookName);
     }
 
     public void returnBook(String bookName){
-        Book book = findBook(bookName);
-
-        if(!book.isAvailable()){
-            book.setAvailable(true);
-        }
-        else{
-            throw new RuntimeException("This book does not belong to this library.");
-        }
+        booksManager.returnBook(bookName);
     }
-
 
 }

@@ -1,0 +1,9 @@
+com/example/App.class
+com/example/service/BooksManager.class
+com/example/models/Book.class
+com/example/models/interfaces/User.class
+com/example/exceptions/BookNotFoundException.class
+com/example/Library.class
+com/example/exceptions/BookNotInInventoryException.class
+com/example/service/UsersManager.class
+com/example/exceptions/BookUnavailableException.class
